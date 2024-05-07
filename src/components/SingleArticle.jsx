@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { getArticleById } from "../api";
 import ErrorPage from "./ErrorPage";
+import CommentsList from "./CommentsList";
 
 const SingleArticle = ({ loading, setLoading }) => {
   const [article, setArticle] = useState({});
@@ -39,6 +40,7 @@ const SingleArticle = ({ loading, setLoading }) => {
       <img src={article.article_img_url}></img>
       <p>votes: {article.votes}</p>
       <p>comments: {article.comment_count}</p>
+      <CommentsList />
     </div>
   );
 };

@@ -32,3 +32,8 @@
   min-width: 250px;
   max-width: 350px;
 }
+
+.comment-card {
+  border: 1px solid gainsboro;
+  margin-bottom: 1rem;
+}
