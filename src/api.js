@@ -7,8 +7,16 @@ const getArticles = () => {
       return data.articles;
     })
     .catch((error) => {
-      console.log(error);
+      return error.response;
     });
 };
 
-export { getArticles };
+const getArticleById = (article_id) => {
+  return axios
+    .get(`https://nc-news-7e8z.onrender.com/api/articles/${article_id}`)
+    .then(({ data }) => {
+      return data.article;
+    });
+};
+
+export { getArticles, getArticleById };
