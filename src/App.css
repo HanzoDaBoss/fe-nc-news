@@ -5,21 +5,20 @@
   text-align: center;
 }
 
-.card {
-  padding: 0rem 2em;
-}
-
 .read-the-docs {
   color: #888;
 }
 
 .article-card {
-  padding: 2rem;
   border-top: 1px solid rgb(142, 141, 141);
 }
 
+.article-card:hover {
+  background-color: rgb(43, 43, 43);
+}
+
 .article-card > img {
-  min-width: 350px;
+  width: 300px;
   max-width: 450px;
 }
 

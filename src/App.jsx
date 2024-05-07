@@ -5,12 +5,14 @@ import "./App.css";
 import ArticlesList from "./components/ArticlesList";
 import SingleArticle from "./components/SingleArticle";
 import ErrorPage from "./components/ErrorPage";
+import Header from "./components/Header";
 
 function App() {
   const [loading, setLoading] = useState(true);
 
   return (
     <>
+      <Header></Header>
       <Routes>
         <Route path="/" element={<ArticlesList />}></Route>
         <Route
