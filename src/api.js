@@ -29,4 +29,15 @@ const getComments = (article_id) => {
     });
 };
 
-export { getArticles, getArticleById, getComments };
+const patchVote = (article_id, vote) => {
+  return axios
+    .patch(`https://nc-news-7e8z.onrender.com/api/articles/${article_id}`, {
+      inc_votes: vote,
+    })
+    .then(({ data }) => {
+      console.log("success");
+      return data.article;
+    });
+};
+
+export { getArticles, getArticleById, getComments, patchVote };

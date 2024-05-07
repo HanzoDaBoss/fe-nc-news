@@ -1,15 +1,19 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+
 import { getArticleById } from "../api";
+
 import ErrorPage from "./ErrorPage";
 import CommentsList from "./CommentsList";
+import Vote from "./Vote";
 
 const SingleArticle = ({ loading, setLoading }) => {
   const [article, setArticle] = useState({});
-  const { article_id } = useParams();
-
   const [error, setError] = useState(null);
+  const [voteChange, setVoteChange] = useState(0);
+
+  const { article_id } = useParams();
 
   useEffect(() => {
     setLoading(true);
@@ -38,8 +42,9 @@ const SingleArticle = ({ loading, setLoading }) => {
       <h2>{article.title}</h2>
       <p>{article.body}</p>
       <img src={article.article_img_url}></img>
-      <p>votes: {article.votes}</p>
+      <p>votes: {article.votes + voteChange}</p>
       <p>comments: {article.comment_count}</p>
+      <Vote voteChange={voteChange} setVoteChange={setVoteChange} />
       <CommentsList />
     </div>
   );
