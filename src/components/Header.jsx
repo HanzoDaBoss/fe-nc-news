@@ -13,7 +13,7 @@ const Header = () => {
 
   return (
     <>
-      <Link to="/">
+      <Link to="/" reloadDocument>
         <h1>NC-NEWS</h1>
       </Link>
       {topicsList.map((topic, index) => {

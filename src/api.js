@@ -80,6 +80,19 @@ const getArticlesByTopic = (topic_name) => {
     });
 };
 
+const getArticlesBySort = (sort_by, order_by = "") => {
+  return axios
+    .get(
+      `https://nc-news-7e8z.onrender.com/api/articles?sort_by=${sort_by}${order_by}`
+    )
+    .then(({ data }) => {
+      return data.articles;
+    })
+    .catch((error) => {
+      return error.response;
+    });
+};
+
 export {
   getArticles,
   getArticleById,
@@ -89,4 +102,5 @@ export {
   deleteComment,
   getTopics,
   getArticlesByTopic,
+  getArticlesBySort,
 };
