@@ -1,16 +1,6 @@
-import { getArticles } from "../api";
-import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-const ArticlesList = () => {
-  const [articlesList, setArticlesList] = useState([]);
-
-  useEffect(() => {
-    getArticles().then((articles) => {
-      setArticlesList(articles);
-    });
-  }, []);
-
+const ArticlesList = ({ articlesList }) => {
   return (
     <>
       {articlesList.map((article) => {
