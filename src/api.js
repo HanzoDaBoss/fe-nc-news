@@ -46,9 +46,23 @@ const postComment = (article_id, commentObj) => {
       commentObj
     )
     .then(({ data }) => {
-      console.log("Success");
       return data.articles;
     });
 };
 
-export { getArticles, getArticleById, getComments, patchVote, postComment };
+const deleteComment = (comment_id) => {
+  return axios
+    .delete(`https://nc-news-7e8z.onrender.com/api/comments/${comment_id}`)
+    .then(() => {
+      return;
+    });
+};
+
+export {
+  getArticles,
+  getArticleById,
+  getComments,
+  patchVote,
+  postComment,
+  deleteComment,
+};

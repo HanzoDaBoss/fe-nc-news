@@ -51,6 +51,7 @@ const SingleArticle = ({ loading, setLoading, user }) => {
       <CommentsList
         commentsList={commentsList}
         setCommentsList={setCommentsList}
+        user={user}
       />
     </div>
   );

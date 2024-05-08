@@ -15,7 +15,7 @@ const ArticlesList = () => {
     <>
       {articlesList.map((article) => {
         return (
-          <Link to={`/articles/${article.article_id}`}>
+          <Link to={`/articles/${article.article_id}`} key={article.article_id}>
             <div className="article-card" key={article.article_id}>
               <p>
                 {article.author} posted on {article.topic}
