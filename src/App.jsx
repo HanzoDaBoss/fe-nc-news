@@ -9,6 +9,7 @@ import Header from "./components/Header";
 
 function App() {
   const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState("tickle122");
 
   return (
     <>
@@ -17,7 +18,13 @@ function App() {
         <Route path="/" element={<ArticlesList />}></Route>
         <Route
           path="/articles/:article_id"
-          element={<SingleArticle loading={loading} setLoading={setLoading} />}
+          element={
+            <SingleArticle
+              loading={loading}
+              setLoading={setLoading}
+              user={user}
+            />
+          }
         ></Route>
       </Routes>
     </>

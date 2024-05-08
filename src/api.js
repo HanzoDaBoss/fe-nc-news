@@ -35,9 +35,20 @@ const patchVote = (article_id, vote) => {
       inc_votes: vote,
     })
     .then(({ data }) => {
-      console.log("success");
       return data.article;
     });
 };
 
-export { getArticles, getArticleById, getComments, patchVote };
+const postComment = (article_id, commentObj) => {
+  return axios
+    .post(
+      `https://nc-news-7e8z.onrender.com/api/articles/${article_id}/comments`,
+      commentObj
+    )
+    .then(({ data }) => {
+      console.log("Success");
+      return data.articles;
+    });
+};
+
+export { getArticles, getArticleById, getComments, patchVote, postComment };

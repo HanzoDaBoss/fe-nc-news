@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+
 import { getComments } from "../api";
 
-const CommentsList = () => {
+const CommentsList = ({ commentsList, setCommentsList }) => {
   const { article_id } = useParams();
-  const [commentsList, setCommentsList] = useState([]);
 
   useEffect(() => {
     getComments(article_id).then((comments) => {
       setCommentsList(comments);
     });
-  });
+  }, []);
 
   return (
     <>

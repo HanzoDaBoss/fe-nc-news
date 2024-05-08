@@ -7,11 +7,13 @@ import { getArticleById } from "../api";
 import ErrorPage from "./ErrorPage";
 import CommentsList from "./CommentsList";
 import Vote from "./Vote";
+import AddComment from "./AddComment";
 
-const SingleArticle = ({ loading, setLoading }) => {
+const SingleArticle = ({ loading, setLoading, user }) => {
   const [article, setArticle] = useState({});
   const [error, setError] = useState(null);
   const [voteChange, setVoteChange] = useState(0);
+  const [commentsList, setCommentsList] = useState([]);
 
   const { article_id } = useParams();
 
@@ -45,7 +47,11 @@ const SingleArticle = ({ loading, setLoading }) => {
       <p>votes: {article.votes + voteChange}</p>
       <p>comments: {article.comment_count}</p>
       <Vote voteChange={voteChange} setVoteChange={setVoteChange} />
-      <CommentsList />
+      <AddComment user={user} setCommentsList={setCommentsList} />
+      <CommentsList
+        commentsList={commentsList}
+        setCommentsList={setCommentsList}
+      />
     </div>
   );
 };
