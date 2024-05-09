@@ -1,9 +1,9 @@
-const ErrorPage = ({ error }) => {
+const ErrorPage = () => {
   return (
     <>
       <h1>Oh no, something has gone wrong :(</h1>
-      <h2>{error.status}</h2>
-      <h3>{error.data.msg}</h3>
+      <h2>404</h2>
+      <h3>Page not found</h3>
     </>
   );
 };

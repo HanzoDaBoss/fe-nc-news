@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 
 import { getArticleById } from "../api";
 
-import ErrorPage from "./ErrorPage";
 import CommentsList from "./CommentsList";
 import Vote from "./Vote";
 import AddComment from "./AddComment";
+import ErrorDisplay from "./ErrorDisplay";
 
 const SingleArticle = ({ loading, setLoading, user }) => {
   const [article, setArticle] = useState({});
@@ -31,7 +31,7 @@ const SingleArticle = ({ loading, setLoading, user }) => {
 
   if (error) {
     console.log(error);
-    return <ErrorPage error={error} />;
+    return <ErrorDisplay error={error} />;
   }
 
   return loading ? (
