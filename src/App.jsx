@@ -17,6 +17,7 @@ function App() {
     <>
       <Header></Header>
       <Routes>
+        <Route path="*" element={<ErrorPage />} />
         <Route
           path="/"
           element={

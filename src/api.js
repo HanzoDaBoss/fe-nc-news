@@ -74,9 +74,6 @@ const getArticlesByTopic = (topic_name) => {
     .get(`https://nc-news-7e8z.onrender.com/api/articles?topic=${topic_name}`)
     .then(({ data }) => {
       return data.articles;
-    })
-    .catch((error) => {
-      return error.response;
     });
 };
 
