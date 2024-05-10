@@ -10,7 +10,6 @@ import SingleTopic from "./components/SingleTopic";
 
 function App() {
   const [loading, setLoading] = useState(true);
-  const [user, setUser] = useState("tickle122");
   const [articlesList, setArticlesList] = useState([]);
 
   return (
@@ -24,18 +23,14 @@ function App() {
             <Home
               articlesList={articlesList}
               setArticlesList={setArticlesList}
+              loading={loading}
+              setLoading={setLoading}
             />
           }
         ></Route>
         <Route
           path="/articles/:article_id"
-          element={
-            <SingleArticle
-              loading={loading}
-              setLoading={setLoading}
-              user={user}
-            />
-          }
+          element={<SingleArticle loading={loading} setLoading={setLoading} />}
         ></Route>
         <Route
           path="/topics/:topic_name"
@@ -43,6 +38,8 @@ function App() {
             <SingleTopic
               articlesList={articlesList}
               setArticlesList={setArticlesList}
+              loading={loading}
+              setLoading={setLoading}
             />
           }
         ></Route>

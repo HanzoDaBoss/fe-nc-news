@@ -5,15 +5,23 @@ import { getArticlesByTopic } from "../api";
 import ArticlesList from "./ArticlesList";
 import ErrorDisplay from "./ErrorDisplay";
 
-const SingleTopic = ({ articlesList, setArticlesList }) => {
+const SingleTopic = ({
+  articlesList,
+  setArticlesList,
+  loading,
+  setLoading,
+}) => {
   const [error, setError] = useState(null);
 
   const { topic_name } = useParams();
 
   useEffect(() => {
+    setLoading(true);
     getArticlesByTopic(topic_name)
       .then((articles) => {
         setArticlesList(articles);
+        setLoading(false);
+        setError("");
       })
       .catch((error) => {
         setError(error.response);
@@ -21,11 +29,14 @@ const SingleTopic = ({ articlesList, setArticlesList }) => {
   }, [topic_name]);
 
   if (error) {
-    console.log(error);
     return <ErrorDisplay error={error} />;
   }
 
-  return <ArticlesList articlesList={articlesList} />;
+  return loading ? (
+    <h2>Loading...</h2>
+  ) : (
+    <ArticlesList articlesList={articlesList} />
+  );
 };
 
 export default SingleTopic;
