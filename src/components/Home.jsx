@@ -1,54 +1,63 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
-import { getArticles, getArticlesBySort } from "../api";
+import { getArticles } from "../api";
 import ArticlesList from "./ArticlesList";
 
-const Home = ({ articlesList, setArticlesList }) => {
+const Home = ({ articlesList, setArticlesList, loading, setLoading }) => {
   const [sortBy, setSortBy] = useState("");
-  const [orderBy, setOrderBy] = useState("&order=asc");
+  const [orderBy, setOrderBy] = useState("");
 
   const [searchParams, setSearchParams] = useSearchParams();
   searchParams.get("sort_by");
   searchParams.get("order");
 
   const handleSortBySelect = (e) => {
+    e.preventDefault();
     setSortBy(e.target.value);
   };
 
   const handleOrderBySelect = (e) => {
+    e.preventDefault();
     setOrderBy(e.target.value);
   };
 
   useEffect(() => {
+    setLoading(true);
+    setSearchParams({});
     if (sortBy) {
       setSearchParams({
         sort_by: sortBy,
-        order: orderBy.slice(7, orderBy.length),
-      });
-      getArticlesBySort(sortBy, orderBy).then((articles) => {
-        setArticlesList(articles);
-      });
-    } else {
-      getArticles().then((articles) => {
-        setSearchParams({});
-        setArticlesList(articles);
       });
     }
+    if (orderBy) {
+      setSearchParams(() => {
+        return sortBy
+          ? { sort_by: sortBy, order: orderBy }
+          : { order: orderBy };
+      });
+    }
+    getArticles(sortBy, orderBy).then((articles) => {
+      setArticlesList(articles);
+      setLoading(false);
+    });
   }, [sortBy, orderBy]);
 
-  return (
+  return loading ? (
+    <h2>Loading...</h2>
+  ) : (
     <>
       <form>
         <select onChange={handleSortBySelect} value={sortBy}>
-          <option value="">Select...</option>
+          <option value="">Sort by...</option>
           <option value="created_at">Date</option>
           <option value="comment_count">Comment Count</option>
           <option value="votes">Votes</option>
         </select>
         <select onChange={handleOrderBySelect} value={orderBy}>
-          <option value="&order=asc">Ascending</option>
-          <option value="&order=desc">Descending</option>
+          <option value="">Order by...</option>
+          <option value="asc">Ascending</option>
+          <option value="desc">Descending</option>
         </select>
       </form>
       <ArticlesList articlesList={articlesList} />

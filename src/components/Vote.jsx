@@ -9,6 +9,9 @@ const Vote = ({ voteChange, setVoteChange }) => {
       return (currVote += vote);
     });
     patchVote(article_id, vote).catch((error) => {
+      setVoteChange((currVote) => {
+        return (currVote -= vote);
+      });
       alert("Apologies - vote did not process");
     });
   };

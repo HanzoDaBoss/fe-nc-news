@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
 
 import { getArticleById } from "../api";
 
@@ -9,11 +8,12 @@ import Vote from "./Vote";
 import AddComment from "./AddComment";
 import ErrorDisplay from "./ErrorDisplay";
 
-const SingleArticle = ({ loading, setLoading, user }) => {
+const SingleArticle = ({ loading, setLoading }) => {
   const [article, setArticle] = useState({});
   const [error, setError] = useState(null);
   const [voteChange, setVoteChange] = useState(0);
   const [commentsList, setCommentsList] = useState([]);
+  const [hasNoComments, setHasNoComments] = useState(false);
 
   const { article_id } = useParams();
 
@@ -30,7 +30,6 @@ const SingleArticle = ({ loading, setLoading, user }) => {
   }, [article_id]);
 
   if (error) {
-    console.log(error);
     return <ErrorDisplay error={error} />;
   }
 
@@ -47,11 +46,15 @@ const SingleArticle = ({ loading, setLoading, user }) => {
       <p>votes: {article.votes + voteChange}</p>
       <p>comments: {article.comment_count}</p>
       <Vote voteChange={voteChange} setVoteChange={setVoteChange} />
-      <AddComment user={user} setCommentsList={setCommentsList} />
+      <AddComment
+        setCommentsList={setCommentsList}
+        setHasNoComments={setHasNoComments}
+      />
       <CommentsList
         commentsList={commentsList}
         setCommentsList={setCommentsList}
-        user={user}
+        hasNoComments={hasNoComments}
+        setHasNoComments={setHasNoComments}
       />
     </div>
   );

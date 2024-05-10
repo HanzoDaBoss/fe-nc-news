@@ -1,19 +1,42 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 
 import { getComments } from "../api";
 import DeleteComment from "./DeleteComment";
+import { UserContext } from "./contexts/User";
 
-const CommentsList = ({ commentsList, setCommentsList, user }) => {
+const CommentsList = ({
+  commentsList,
+  setCommentsList,
+  hasNoComments,
+  setHasNoComments,
+}) => {
+  const [loadingComments, setLoadingComments] = useState(false);
+
+  const { user } = useContext(UserContext);
+
   const { article_id } = useParams();
 
   useEffect(() => {
-    getComments(article_id).then((comments) => {
-      setCommentsList(comments);
-    });
+    setLoadingComments(true);
+    getComments(article_id)
+      .then((comments) => {
+        setCommentsList(comments);
+        setLoadingComments(false);
+      })
+      .catch((error) => {
+        setLoadingComments(false);
+        setHasNoComments(true);
+      });
   }, []);
 
-  return (
+  if (hasNoComments) {
+    return <h2>Be the first to comment!</h2>;
+  }
+
+  return loadingComments ? (
+    <h2>Loading comments...</h2>
+  ) : (
     <>
       {commentsList.map((comment) => {
         return Object.keys(comment).includes("deleteMessage") ? (
