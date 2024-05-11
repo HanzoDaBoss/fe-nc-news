@@ -2,11 +2,12 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import { getArticleById } from "../api";
-
 import CommentsList from "./CommentsList";
 import Vote from "./Vote";
 import AddComment from "./AddComment";
 import ErrorDisplay from "./ErrorDisplay";
+
+import Spinner from "react-bootstrap/Spinner";
 
 const SingleArticle = ({ loading, setLoading }) => {
   const [article, setArticle] = useState({});
@@ -34,7 +35,9 @@ const SingleArticle = ({ loading, setLoading }) => {
   }
 
   return loading ? (
-    <h2>Loading...</h2>
+    <div className="loading">
+      <Spinner animation="border" variant="primary" />
+    </div>
   ) : (
     <div className="single-article">
       <p>

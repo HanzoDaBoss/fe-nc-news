@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { getUsers } from "../api";
-import { useContext } from "react";
 import { UserContext } from "./contexts/User";
+
+import Accordion from "react-bootstrap/Accordion";
+import ListGroup from "react-bootstrap/ListGroup";
 
 const UsersList = () => {
   const [usersList, setUsersList] = useState([]);
@@ -17,20 +19,30 @@ const UsersList = () => {
     setUser(user.username);
   };
 
-  return usersList.map((user, index) => {
-    return (
-      <button
-        onClick={() => {
-          handleUserSelect(user);
-        }}
-        key={index}
-      >
-        <div className="user">
-          <p>{user.username}</p>
-        </div>
-      </button>
-    );
-  });
+  return (
+    <Accordion.Item eventKey={"0"}>
+      <Accordion.Header>Users</Accordion.Header>
+      <Accordion.Body>
+        <ListGroup>
+          {usersList.map((user, index) => {
+            return (
+              <div key={index}>
+                <ListGroup.Item
+                  action
+                  as="button"
+                  onClick={() => {
+                    handleUserSelect(user);
+                  }}
+                >
+                  {user.username}
+                </ListGroup.Item>
+              </div>
+            );
+          })}
+        </ListGroup>
+      </Accordion.Body>
+    </Accordion.Item>
+  );
 };
 
 export default UsersList;

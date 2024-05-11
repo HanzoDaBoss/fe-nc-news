@@ -4,6 +4,10 @@ import { useSearchParams } from "react-router-dom";
 import { getArticles } from "../api";
 import ArticlesList from "./ArticlesList";
 
+import Form from "react-bootstrap/Form";
+import Row from "react-bootstrap/Row";
+import Spinner from "react-bootstrap/Spinner";
+
 const Home = ({ articlesList, setArticlesList, loading, setLoading }) => {
   const [sortBy, setSortBy] = useState("");
   const [orderBy, setOrderBy] = useState("");
@@ -44,22 +48,34 @@ const Home = ({ articlesList, setArticlesList, loading, setLoading }) => {
   }, [sortBy, orderBy]);
 
   return loading ? (
-    <h2>Loading...</h2>
+    <div className="loading">
+      <Spinner animation="border" variant="primary" />
+    </div>
   ) : (
     <>
-      <form>
-        <select onChange={handleSortBySelect} value={sortBy}>
-          <option value="">Sort by...</option>
-          <option value="created_at">Date</option>
-          <option value="comment_count">Comment Count</option>
-          <option value="votes">Votes</option>
-        </select>
-        <select onChange={handleOrderBySelect} value={orderBy}>
-          <option value="">Order by...</option>
-          <option value="asc">Ascending</option>
-          <option value="desc">Descending</option>
-        </select>
-      </form>
+      <Form>
+        <Row className="mb-3">
+          <Form.Select
+            className="w-25 mx-2"
+            onChange={handleSortBySelect}
+            value={sortBy}
+          >
+            <option value="">Sort by...</option>
+            <option value="created_at">Date</option>
+            <option value="comment_count">Comment Count</option>
+            <option value="votes">Votes</option>
+          </Form.Select>
+          <Form.Select
+            className="w-25"
+            onChange={handleOrderBySelect}
+            value={orderBy}
+          >
+            <option value="">Order by...</option>
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
+          </Form.Select>
+        </Row>
+      </Form>
       <ArticlesList articlesList={articlesList} />
     </>
   );

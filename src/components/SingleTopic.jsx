@@ -5,6 +5,8 @@ import { getArticlesByTopic } from "../api";
 import ArticlesList from "./ArticlesList";
 import ErrorDisplay from "./ErrorDisplay";
 
+import Spinner from "react-bootstrap/Spinner";
+
 const SingleTopic = ({
   articlesList,
   setArticlesList,
@@ -33,7 +35,7 @@ const SingleTopic = ({
   }
 
   return loading ? (
-    <h2>Loading...</h2>
+    <Spinner animation="border" variant="primary" />
   ) : (
     <ArticlesList articlesList={articlesList} />
   );

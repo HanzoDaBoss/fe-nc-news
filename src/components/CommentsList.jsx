@@ -5,6 +5,8 @@ import { getComments } from "../api";
 import DeleteComment from "./DeleteComment";
 import { UserContext } from "./contexts/User";
 
+import Spinner from "react-bootstrap/Spinner";
+
 const CommentsList = ({
   commentsList,
   setCommentsList,
@@ -35,7 +37,7 @@ const CommentsList = ({
   }
 
   return loadingComments ? (
-    <h2>Loading comments...</h2>
+    <Spinner animation="grow" variant="primary" />
   ) : (
     <>
       {commentsList.map((comment) => {

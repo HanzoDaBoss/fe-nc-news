@@ -2,37 +2,74 @@
   max-width: 1280px;
   margin: 0;
   padding: 0;
-  text-align: center;
+  width: 100vw;
 }
 
 .read-the-docs {
   color: #888;
 }
 
+.main-content {
+  padding-top: 100px;
+  text-align: center;
+}
+
+.loading { 
+  width: 100%;
+}
+
 .article-card {
-  border-top: 1px solid rgb(142, 141, 141);
+  
 }
 
 .article-card:hover {
-  background-color: rgb(43, 43, 43);
+  /* background-color: rgb(43, 43, 43); */
+  background-color: #f8f9fa;
 }
 
 .article-card > img {
   width: 300px;
-  max-width: 450px;
+  /* max-width: 450px; */
+  border-radius: 10px;
 }
 
 .single-article {
-  padding: 3rem;
-  border-top: 1px solid rgb(142, 141, 141);
 }
 
 .single-article > img {
   min-width: 250px;
   max-width: 350px;
+  border-radius: 10px;
 }
 
 .comment-card {
   border: 1px solid gainsboro;
   margin-bottom: 1rem;
 }
+
+@media (min-width: 992px) {
+  .main-content {
+    margin-left: 20rem;
+  }
+  .article-card > img {
+    width: 500px;
+  }
+  .single-article > img {
+    min-width: 450px;
+    max-width: 550px;
+    border-radius: 10px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .main-content {
+    margin-left: 25rem;
+  }
+}
+
+@media (min-width: 1600px) {
+  .main-content {
+    margin-left: 30rem;
+  }
+}
+
