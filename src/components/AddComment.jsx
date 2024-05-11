@@ -4,6 +4,10 @@ import { useParams } from "react-router-dom";
 import { postComment } from "../api";
 import { UserContext } from "./contexts/User";
 
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/esm/Button";
+import Row from "react-bootstrap/esm/Row";
+
 const AddComment = ({ setCommentsList, setHasNoComments }) => {
   const [commentText, setCommentText] = useState("");
   const [hasPosted, setHasPosted] = useState(false);
@@ -48,14 +52,23 @@ const AddComment = ({ setCommentsList, setHasNoComments }) => {
   };
 
   return (
-    <form onSubmit={handlePostComment}>
-      <textarea
+    <Form onSubmit={handlePostComment}>
+      <Form.Control
+        as="textarea"
+        className="my-2"
         placeholder="Add a comment..."
         value={commentText}
         onChange={handleCommentText}
-      ></textarea>
-      <button disabled={hasPosted}>Post</button>
-    </form>
+      ></Form.Control>
+      <Button
+        type="submit"
+        className="mb-4"
+        variant="outline-dark"
+        disabled={hasPosted}
+      >
+        Post
+      </Button>
+    </Form>
   );
 };
 

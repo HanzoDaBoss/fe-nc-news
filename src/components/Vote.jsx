@@ -1,6 +1,8 @@
 import { useParams } from "react-router-dom";
 import { patchVote } from "../api";
 
+import Button from "react-bootstrap/esm/Button";
+
 const Vote = ({ voteChange, setVoteChange }) => {
   const { article_id } = useParams();
 
@@ -17,14 +19,24 @@ const Vote = ({ voteChange, setVoteChange }) => {
   };
 
   return (
-    <>
-      <button disabled={voteChange === 1} onClick={() => handleVote(1)}>
+    <div className="my-4">
+      <Button
+        variant="outline-success"
+        className="mx-2"
+        disabled={voteChange === 1}
+        onClick={() => handleVote(1)}
+      >
         Vote Up
-      </button>
-      <button disabled={voteChange === -1} onClick={() => handleVote(-1)}>
+      </Button>
+      <Button
+        variant="outline-danger"
+        className="mx-2"
+        disabled={voteChange === -1}
+        onClick={() => handleVote(-1)}
+      >
         Vote Down
-      </button>
-    </>
+      </Button>
+    </div>
   );
 };
 

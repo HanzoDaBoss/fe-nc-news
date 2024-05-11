@@ -5,12 +5,43 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  /* background-color: #242424; */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: light;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #b0b0b0;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Handle */
+#sticky-sidebar > ::-webkit-scrollbar-thumb {
+  background: #b0b0b0;
+  visibility: hidden;
+}
+
+/* Handle on hover */
+#sticky-sidebar:hover ::-webkit-scrollbar-thumb{
+  background: #555;
+  visibility: visible;
 }
 
 a {
@@ -25,8 +56,9 @@ a:hover {
 body {
   margin: 0;
   display: flex;
+  align-items: center;
   place-items: center;
-  justify-content: center;
+  justify-content: start;
   min-width: 320px;
   min-height: 100vh;
 }
