@@ -1,7 +1,6 @@
 import { useContext } from "react";
 
-import TopicsList from "./TopicsList";
-import UsersList from "./UsersList";
+import SearchBar from "./SearchBar";
 import { UserContext } from "./contexts/User";
 import logo from "../assets/logo.svg";
 
@@ -10,7 +9,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/esm/Button";
 
-const Header = ({ setShow }) => {
+const Header = ({ setShow, setArticlesList, setSearch }) => {
   const { user } = useContext(UserContext);
 
   const handleShow = () => setShow(true);
@@ -35,20 +34,7 @@ const Header = ({ setShow }) => {
           <Navbar.Brand href="/" className="d-none d-lg-block">
             NC-NEWS
           </Navbar.Brand>
-          <Form className="d-flex flex-grow-1 w-25">
-            <Form.Control
-              type="search"
-              placeholder="Search"
-              className="me-2"
-              aria-label="Search"
-            />
-            <Button
-              variant="outline-primary"
-              className="me-2 d-none d-lg-block"
-            >
-              Search
-            </Button>
-          </Form>
+          <SearchBar setArticlesList={setArticlesList} setSearch={setSearch} />
           <Button variant="outline-danger" className="me-2">
             Post
           </Button>

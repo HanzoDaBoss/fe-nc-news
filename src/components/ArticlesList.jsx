@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 const ArticlesList = ({ articlesList }) => {
   return (
     <>
-      {articlesList.map((article) => {
+      {articlesList.map((article, index) => {
         return (
-          <>
+          <div key={index}>
             <hr className="line-break"></hr>
             <Link
               to={`/articles/${article.article_id}`}
@@ -21,7 +21,7 @@ const ArticlesList = ({ articlesList }) => {
                 <p>comments: {article.comment_count}</p>
               </div>
             </Link>
-          </>
+          </div>
         );
       })}
     </>

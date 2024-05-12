@@ -1,5 +1,7 @@
 import { deleteComment } from "../api";
 
+import Button from "react-bootstrap/esm/Button";
+
 const DeleteComment = ({ setCommentsList, comment_id }) => {
   const handleDelete = () => {
     setCommentsList((currCommentsList) => {
@@ -16,7 +18,11 @@ const DeleteComment = ({ setCommentsList, comment_id }) => {
     });
   };
 
-  return <button onClick={handleDelete}>Delete</button>;
+  return (
+    <Button variant="outline-danger" onClick={handleDelete}>
+      Delete
+    </Button>
+  );
 };
 
 export default DeleteComment;
