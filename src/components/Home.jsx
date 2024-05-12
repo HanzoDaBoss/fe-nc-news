@@ -8,7 +8,13 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Spinner from "react-bootstrap/Spinner";
 
-const Home = ({ articlesList, setArticlesList, loading, setLoading }) => {
+const Home = ({
+  articlesList,
+  setArticlesList,
+  loading,
+  setLoading,
+  search,
+}) => {
   const [sortBy, setSortBy] = useState("");
   const [orderBy, setOrderBy] = useState("");
 
@@ -41,11 +47,24 @@ const Home = ({ articlesList, setArticlesList, loading, setLoading }) => {
           : { order: orderBy };
       });
     }
-    getArticles(sortBy, orderBy).then((articles) => {
-      setArticlesList(articles);
-      setLoading(false);
-    });
-  }, [sortBy, orderBy]);
+    getArticles(sortBy, orderBy)
+      .then((articles) => {
+        if (search) {
+          setSearchParams({
+            search: search,
+            sort_by: sortBy,
+            order: orderBy,
+          });
+          return articles.filter((article) => {
+            return article.title.toLowerCase().includes(search.toLowerCase());
+          });
+        } else return articles;
+      })
+      .then((articles) => {
+        setArticlesList(articles);
+        setLoading(false);
+      });
+  }, [sortBy, orderBy, search]);
 
   return loading ? (
     <div className="loading">

@@ -14,10 +14,15 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [articlesList, setArticlesList] = useState([]);
   const [show, setShow] = useState(false);
+  const [search, setSearch] = useState("");
 
   return (
     <>
-      <Header setShow={setShow}></Header>
+      <Header
+        setArticlesList={setArticlesList}
+        setShow={setShow}
+        setSearch={setSearch}
+      ></Header>
       <Sidebar show={show} setShow={setShow}>
         <Routes>
           <Route path="*" element={<ErrorPage />} />
@@ -29,6 +34,7 @@ function App() {
                 setArticlesList={setArticlesList}
                 loading={loading}
                 setLoading={setLoading}
+                search={search}
               />
             }
           ></Route>
