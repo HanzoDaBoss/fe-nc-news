@@ -6,17 +6,13 @@ const LoginModal = ({ toggleLoginModal, handleToggleLoginModal }) => {
   return (
     <Modal show={toggleLoginModal} onHide={handleToggleLoginModal}>
       <Modal.Header closeButton>
-        <Modal.Title>Modal heading</Modal.Title>
+        <Modal.Title>Login</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form>
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control
-              type="email"
-              placeholder="name@example.com"
-              autoFocus
-            />
+            <Form.Label>Username</Form.Label>
+            <Form.Control type="text" placeholder="username" autoFocus />
           </Form.Group>
           <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
             <Form.Label>Example textarea</Form.Label>
