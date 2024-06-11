@@ -9,12 +9,20 @@ import ErrorPage from "./components/ErrorPage";
 import Header from "./components/Header";
 import SingleTopic from "./components/SingleTopic";
 import Sidebar from "./components/Sidebar";
+import LoginModal from "./components/LoginModal";
+
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+import Form from "react-bootstrap/Form";
 
 function App() {
   const [loading, setLoading] = useState(true);
   const [articlesList, setArticlesList] = useState([]);
   const [show, setShow] = useState(false);
   const [search, setSearch] = useState("");
+  const [toggleLoginModal, setToggleLoginModal] = useState(false);
+
+  const handleToggleLoginModal = () => setToggleLoginModal(!toggleLoginModal);
 
   return (
     <>
@@ -22,7 +30,12 @@ function App() {
         setArticlesList={setArticlesList}
         setShow={setShow}
         setSearch={setSearch}
+        handleToggleLoginModal={handleToggleLoginModal}
       ></Header>
+      <LoginModal
+        toggleLoginModal={toggleLoginModal}
+        handleToggleLoginModal={handleToggleLoginModal}
+      />
       <Sidebar show={show} setShow={setShow}>
         <Routes>
           <Route path="*" element={<ErrorPage />} />
