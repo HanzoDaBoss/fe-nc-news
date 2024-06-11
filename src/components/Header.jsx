@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useState, useContext } from "react";
 
 import SearchBar from "./SearchBar";
 import { UserContext } from "./contexts/User";
@@ -9,10 +9,16 @@ import Navbar from "react-bootstrap/Navbar";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/esm/Button";
 
-const Header = ({ setShow, setArticlesList, setSearch }) => {
+const Header = ({
+  setShow,
+  setArticlesList,
+  setSearch,
+  handleToggleLoginModal,
+}) => {
   const { user } = useContext(UserContext);
 
   const handleShow = () => setShow(true);
+
   const expand = "lg";
   return (
     <>
@@ -42,7 +48,11 @@ const Header = ({ setShow, setArticlesList, setSearch }) => {
             {user ? (
               `Welcome, ${user}`
             ) : (
-              <Button variant="outline-info" className="me-2">
+              <Button
+                variant="outline-info"
+                className="me-2"
+                onClick={handleToggleLoginModal}
+              >
                 Login
               </Button>
             )}
