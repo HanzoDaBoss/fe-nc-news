@@ -1,14 +1,14 @@
-import { useState, useContext } from "react";
+import {useState, useContext} from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
-import { UserContext } from "./contexts/User";
-import { getUsers } from "../api";
+import {UserContext} from "./contexts/User";
+import {getUsers} from "../api";
 
-const LoginModal = ({ toggleLoginModal, handleToggleLoginModal }) => {
+const LoginModal = ({toggleLoginModal, handleToggleLoginModal}) => {
   const [usernameInput, setUsernameInput] = useState("");
   const [loginErrorModal, setLoginErrorModal] = useState(false);
-  const { setUser } = useContext(UserContext);
+  const {setUser} = useContext(UserContext);
 
   const toggleLoginErrorModal = () => setLoginErrorModal(!loginErrorModal);
 
@@ -66,7 +66,7 @@ const LoginModal = ({ toggleLoginModal, handleToggleLoginModal }) => {
         <Modal.Header closeButton>
           <Modal.Title id="example-modal-sizes-title-sm">Error</Modal.Title>
         </Modal.Header>
-        <Modal.Body>User not found!</Modal.Body>
+        <Modal.Body>Error: User not found!</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={toggleLoginErrorModal}>
             Dismiss
