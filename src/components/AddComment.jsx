@@ -1,20 +1,19 @@
-import { useState, useContext } from "react";
-import { useParams } from "react-router-dom";
+import {useState, useContext} from "react";
+import {useParams} from "react-router-dom";
 
-import { postComment } from "../api";
-import { UserContext } from "./contexts/User";
+import {postComment} from "../api";
+import {UserContext} from "./contexts/User";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/esm/Button";
-import Row from "react-bootstrap/esm/Row";
 
-const AddComment = ({ setCommentsList, setHasNoComments }) => {
+const AddComment = ({setCommentsList, setHasNoComments}) => {
   const [commentText, setCommentText] = useState("");
   const [hasPosted, setHasPosted] = useState(false);
 
-  const { user } = useContext(UserContext);
+  const {user} = useContext(UserContext);
 
-  const { article_id } = useParams();
+  const {article_id} = useParams();
 
   const handleCommentText = (e) => {
     setCommentText(e.target.value);
@@ -40,7 +39,7 @@ const AddComment = ({ setCommentsList, setHasNoComments }) => {
           ...currCommentsList,
         ];
       });
-      postComment(article_id, { username: user, body: commentText })
+      postComment(article_id, {username: user, body: commentText})
         .then(() => {
           setHasPosted(false);
         })
